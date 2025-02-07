@@ -1,0 +1,541 @@
+/* General body styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: space-between; /* Space between left and right sections */
+    align-items: flex-start;
+    height: 100vh;
+  }
+  html, body {
+    overflow: hidden;
+    height: 100%;
+}
+  /* Text container */
+  .text-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  
+  .text {
+    font-size: 24px;
+    font-weight: bolder;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+  }
+  
+  .text.vitae {
+    color: orange;
+    animation-delay: 1s;
+  }
+  
+  /* Alternatives Container */
+  .alternatives {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Menu Icon */
+  .menu-icon {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: row;
+    gap: 20px;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 4; /* Ensure dropdown is on top of other content */
+}
+
+/* When 'show' class is added, the dropdown is displayed */
+.dropdown.show {
+    display: flex;
+}
+
+/* Adjust z-index of other content to be below the dropdown */
+.name-container, .text-container, .about-me {
+    z-index: 1; /* Ensure these elements stay below the dropdown */
+}
+  
+.option {
+  text-decoration: none;
+  background-color: transparent; /* Transparent background */
+  color: black;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding: 12px 24px; /* Increased padding for bigger size */
+  font-weight: bold;
+  font-size: 20px; /* Slightly larger text */
+  border-radius: 8px;
+  text-align: center;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  margin-right: 15px; /* Adds space between the options */
+  position: relative; /* Needed for underline effect */
+}
+
+/* Underline effect on hover */
+.option:hover {
+  color: orange; /* Change color on hover */
+}
+
+.option::after {
+  content: ""; 
+  position: absolute;
+  left: 0;
+  bottom: -3px; /* Adjust distance of underline */
+  width: 100%;
+  height: 2px;
+  background-color: orange; /* Underline color */
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.option:hover::after {
+  transform: scaleX(1); /* Underline appears on hover */
+}
+
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .dropdown {
+      display: none; /* Hide options by default */
+      flex-direction: column;
+      
+      position: absolute;
+      top: 50px;
+      right: 20px;
+     width: 100px;
+      border-radius: 8px;
+     
+    }
+  
+    .dropdown.show {
+      display: flex; /* Show options when menu is open */
+    }
+  
+    .menu-icon {
+      display: block; /* Show menu icon on small screens */
+    }
+  }
+  
+  /* Animation for fade-in */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+
+
+  .name-container {
+    position: absolute;  /* Position the container on the left side */
+    top: 30%;            /* Vertically center it */
+    left: 20px;          /* Space from the left edge */
+    transform: translateY(-50%);
+    animation: slideIn 2s ease-out forwards; /* Adjust the element to be perfectly centered vertically */
+}
+
+@keyframes slideIn {
+    0% {
+        left: -100%; /* Start off-screen to the left */
+    }
+    100% {
+        left: 20px; /* Final position */
+    }
+}   
+
+/* Styling for the name */
+h1 {
+    font-size: 2rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: black;
+}
+.portfolio-text{
+    color: orange;
+    font-weight: bolder;
+}
+
+
+.name-container {
+    position: absolute;  /* Position the container on the left side */
+    bottom: 160px;    
+    width: 400px;        /* Vertically center it */
+    left: 20px;          /* Space from the left edge */
+    transform: translateY(-50%);
+    animation: slideIn 2s ease-out forwards; /* Adjust the element to be perfectly centered vertically */
+}
+
+.portfolio-text {
+    color: orange;
+    font-weight: bolder;
+    margin-bottom: 20px; /* Add space for the "About Me" text */
+}
+
+
+
+.about-me {
+    font-size: 1rem;
+    color: black;
+    width: 500px;
+    
+    opacity: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    transform: translateY(20px); /* Start below the visible area */
+    animation: slideUp 1.5s ease-out 2s forwards; /* Smooth slide-up animation */
+}
+
+/* Keyframes for About Me text */
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Start slightly below */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* End position */
+    }
+}
+.about-me.delayed {
+    animation-delay: 3s;
+    margin-top: 10px; /* 2s for the first animation + 1s delay */
+}
+
+/* Third Delayed Text */
+.about-me.delayed-third {
+    animation-delay: 4s;
+    margin-top: 10px; /* 2s + 1s for second text + 2s additional delay */
+}
+
+
+@media screen and (max-width: 768px) {
+    .about-me {
+        font-size: 12px; /* Reduce font size for smaller screens */
+    }
+
+    .portfolio-text {
+        font-size: 12px; /* Adjust "Min portfolio" size */
+    }
+
+    h1 {
+        font-size: 12px; /* Adjust the main heading size */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .about-me {
+        font-size: 10px;
+         width: 300px;
+    }
+.name-container{
+    margin-bottom: 20px;
+    
+}
+    .portfolio-text {
+        font-size: 12px; /* Adjust "Min portfolio" size */
+    }
+
+    h1 {
+        font-size: 20px;
+    
+    }
+}
+
+/* Image container styling */
+.image-container {
+  position: absolute;
+  top: 5%;
+  z-index: 0;
+  right: -100%; /* Start off-screen to the right */
+  width: 300px; /* Adjust size as needed */
+  height: auto;
+  animation: slideInRight 2s ease-out forwards;
+}
+
+/* Image styling */
+.image-container img {
+  width: 100%;
+  
+  height: auto;
+  border-radius: 12px; /* Optional: Rounded corners */
+  background-color: transparent ;
+}
+
+/* Slide-in animation */
+@keyframes slideInRight {
+  0% {
+      right: -100%;
+  }
+  100% {
+      right: 20px; /* Final position */
+  }
+}
+@media screen and (max-width: 768px) {
+  .image-container {
+      width: 150px; /* Smaller image on mobile */
+  }
+}
+
+
+.name-container, .text-container, .about-me, .alternatives {
+  z-index: 1; }
+
+  .cv-container {
+    position: absolute;
+    top: 10%;
+    margin-top: 20px;
+    left: 20px; /* Lägger sektionerna till vänster */
+    display: flex;
+    flex-direction: column; /* Staplar sektionerna vertikalt */
+    gap: 10px; /* Lägger avstånd mellan sektionerna */
+}
+
+
+
+/* Individuell sektion */
+.cv-section {
+    background-color: transparent;
+    border-radius: 8px;    
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideFadeIn 1s ease-out forwards;
+}
+
+/* Fördröjning per sektion så att de visas en efter en */
+.cv-section:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.cv-section:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
+.cv-section:nth-child(3) {
+    animation-delay: 0.9s;
+}
+
+/* Animationen */
+@keyframes slideFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.portfolio-text1 {
+  color: orange;
+  font-weight: bolder;
+  font-size: 25px;
+  margin-bottom: 1px;
+  margin-left: 1px;
+  padding-top: 1px;
+}
+
+.cv-section .cv-handlerare {
+  font-style: italic;
+  margin-top: 10px;
+}
+
+/* Animation */
+@keyframes slideFadeIn {
+  0% {
+      opacity: 0;
+      transform: translateY(30px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+} 
+.cv-section p span {
+  font-weight: bolder;
+  color: #0c0600; /* Orange färg för etiketter */
+}
+
+
+
+
+/* Allmän styling för utbildningar sidan */
+.education-container {
+  display: flex;
+  justify-content: center; /* För att centrera containrarna horisontellt */
+  gap: 20px; /* Lägger till lite utrymme mellan containrarna */
+  padding: 20px;
+  width: 80%; /* Gör containrarna inte för breda */
+  margin-top: 100px; /* Lägger till avstånd under alternativen (topbar) */
+  margin-right: 100px;
+}
+
+/* Styling för varje utbildningsbox */
+.education-box {
+  background-color: #f9d600; /* Gul bakgrundsfärg */
+  color: black;
+  padding: 40px;
+  width: 30%; /* Bredden på varje container */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Lätt skugga för djup */
+  text-align: center; /* Centrerar texten */
+  font-family: 'Arial', sans-serif;
+  opacity: 0; /* Startar som osynlig */
+  transform: translateY(20px); /* Startposition för animationen */
+  animation: fadeInUp 1s ease-out forwards; /* Animationen för att dyka upp */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smidig övergång för hover-effekter */
+}
+/* Animationen för att dyka upp */
+@keyframes fadeInUp {
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Fördröjning per container så att de dyker upp en efter en */
+.education-box:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.education-box:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+.education-box:nth-child(3) {
+  animation-delay: 0.9s;
+}
+
+/* Hover-effekt */
+.education-box:hover {
+  transform: translateY(-10px); /* Gör containern lite upphöjd vid hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Lägg till en starkare skugga vid hover */
+  background-color: #f7c600; /* Ljusare gul färg vid hover */
+}
+
+/* För mindre skärmar */
+@media screen and (max-width: 768px) {
+  .education-container {
+      flex-direction: column; /* Staplar containrarna vertikalt på små skärmar */
+      gap: 20px;
+  }
+
+  .education-box {
+      width: 100%; /* Gör varje container 100% på små skärmar */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Styla gallerikontainern */
+/* Allmänna stilar */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center; /* Centrera allt på sidan */
+  align-items: center;
+  height: 100vh;
+}
+
+/* Galleri container */
+.gallery-container {
+  position: relative;
+  width: 320px; /* Storlek på iPhone-bilder */
+  height: 600px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Galleri bilder */
+.gallery {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item {
+  flex: 0 0 100%;
+  width: 100%;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Dölja bilder som inte ska synas */
+.gallery-item.hidden {
+  opacity: 0;
+}
+
+/* Kontrollknappar */
+.controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Text under bilderna */
+.text3 {
+  font-size: 14px;
+  color: #333;
+  margin-top: 10px;
+}
+
+  

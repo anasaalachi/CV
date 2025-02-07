@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Alternatives</title>
+    <link rel="stylesheet" href="stylesia.css">
+  </head>
+  <body>
+    <header>
+      <div class="text-container">
+        <span class="text curriculum">Min</span>
+        <span class="text vitae">galleria</span>
+      </div>
+
+      <div class="alternatives">
+        <button class="menu-icon" id="menu-toggle">☰</button>
+        <div class="dropdown" id="dropdown-menu">
+          <a href="cv.html" class="option">CV</a>
+          <a href="index.html" class="option">Portfölj</a>
+          <a href="utbildningar.html" class="option">galleria</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Gallery Section -->
+    <div class="gallery-container">
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="bild2.png" alt="Image 1">
+          <p class="text3">Bild 1</p>
+        </div>
+        <div class="gallery-item">
+          <img src="bild4.jpg" alt="Image 2">
+          <p class="text3">Bild 2</p>
+        </div>
+        <div class="gallery-item large">
+          <img src="bild5.jpeg" alt="Image 3">
+          <p class="text3">Bild 3</p>
+        </div>
+        <div class="gallery-item">
+          <img src="bild6.jpeg" alt="Image 4">
+          <p class="text3">Bild 4</p>
+        </div>
+        <div class="gallery-item small">
+          <img src="bild7.jpeg" alt="Image 5">
+          <p class="text3">Bild 5</p>
+        </div>
+        <div class="gallery-item">
+          <img src="bild8.jpeg" alt="Image 6">
+          <p class="text3">Bild 6</p>
+          <div class="gallery-item">
+            <img src="bild9.jpeg" alt="Image 6">
+            <p class="text3">Bild 6</p>
+            <div class="gallery-item">
+                <img src="bild10.jpeg" alt="Image 6">
+                <p class="text3">Bild 6</p>
+                <div class="gallery-item">
+                    <img src="bild11.jpeg" alt="Image 6">
+                    <p class="text3">Bild 6</p>
+        </div>
+      </div>
+
+      <!-- Controls for sliding gallery -->
+      <div class="controls">
+        <button id="prev" onclick="moveGallery(-1)">❮</button>
+        <button id="next" onclick="moveGallery(1)">❯</button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+    const gallery = document.querySelector('.gallery');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    let currentIndex = 0;
+
+    // Funktion för att svepa till nästa bild
+    function nextImage() {
+      // Dölja nuvarande bild
+      galleryItems[currentIndex].classList.add('hidden');
+
+      // Uppdatera index till nästa bild
+      currentIndex = (currentIndex + 1) % galleryItems.length;
+
+      // Visa nästa bild
+      galleryItems[currentIndex].classList.remove('hidden');
+
+      // Svep bilderna horisontellt
+      gallery.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    // Anropa nextImage var 3:e sekund för att svepa bilder
+    setInterval(nextImage, 3000);
+
+  });
+    </script>
+  </body>
+</html>

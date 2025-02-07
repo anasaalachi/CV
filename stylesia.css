@@ -1,0 +1,452 @@
+/* Grundinställningar */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: white; /* Färg på texten ändras till vit för att passa den svarta bakgrunden */
+    display: flex;
+    justify-content: space-between; /* Space mellan vänster och höger sektioner */
+    align-items: flex-start;
+    height: 100vh;
+    background-color: black; /* Sätt bakgrunden till svart */
+}
+
+html, body {
+    overflow: hidden;
+    height: 100%;
+    background-color: black; /* Sätt bakgrunden till svart */
+}
+
+/* Text container */
+.text-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.text {
+    font-size: 24px;
+    font-weight: bolder;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+.text.vitae {
+    color: orange;
+    animation-delay: 1s;
+}
+
+/* Alternatives Container */
+.alternatives {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* Menu Icon */
+.menu-icon {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: row;
+    gap: 20px;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 4; /* Se till att dropdown är ovanpå annat innehåll */
+}
+
+/* När 'show' klassen är tillagd visas dropdown */
+.dropdown.show {
+    display: flex;
+}
+
+/* Justera z-index för andra element så att de är under dropdown */
+.name-container, .text-container, .about-me {
+    z-index: 1;
+}
+
+/* Option */
+.option {
+    text-decoration: none;
+    background-color: transparent;
+    color: white; /* Färgen på texten ändras till vit för att passa den svarta bakgrunden */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 12px 24px;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    margin-right: 15px;
+    position: relative;
+}
+
+/* Underline effekter på hover */
+.option:hover {
+    color: orange; /* Förändra färgen till orange vid hover */
+}
+
+.option::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 2px;
+    background-color: orange;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.option:hover::after {
+    transform: scaleX(1);
+}
+
+/* Responsiv design */
+@media screen and (max-width: 768px) {
+    .dropdown {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        right: 20px;
+        width: 100px;
+        border-radius: 8px;
+    }
+
+    .dropdown.show {
+        display: flex;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+}
+
+/* Animation för fade-in */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Resten av din CSS */
+.name-container {
+    position: absolute;
+    top: 30%;
+    left: 20px;
+    transform: translateY(-50%);
+    animation: slideIn 2s ease-out forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 20px;
+    }
+}
+
+h1 {
+    font-size: 2rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white; /* För att texten ska vara synlig på svart bakgrund */
+}
+
+.portfolio-text {
+    color: orange;
+    font-weight: bolder;
+}
+
+/* För About Me text */
+.about-me {
+    font-size: 1rem;
+    color: white; /* För att texten ska vara synlig på svart bakgrund */
+}
+
+/* CV sektioner */
+.cv-container {
+    position: absolute;
+    top: 10%;
+    margin-top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Styling för utbildningssektionen */
+.education-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    width: 80%;
+    margin-top: 100px;
+    margin-right: 100px;
+}
+
+/* Styling för varje utbildningsbox */
+.education-box {
+    background-color: #f9d600; /* Gul bakgrundsfärg */
+    color: black;
+    padding: 40px;
+    width: 30%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fördröjning per container så att de dyker upp en efter en */
+.education-box:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.education-box:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
+.education-box:nth-child(3) {
+    animation-delay: 0.9s;
+}
+
+.education-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    background-color: #f7c600;
+}
+
+/* För mindre skärmar */
+@media screen and (max-width: 768px) {
+    .education-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .education-box {
+        width: 100%;
+    }
+}
+
+/* Galleri container */
+.gallery-container {
+    position: relative;
+    width: 320px; /* Storlek på iPhone-bilder */
+    height: 600px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center; /* För att centrera innehållet horisontellt */
+    align-items: center;
+    background-color: black;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Se till att gallerikontainern är centrerad */
+  }
+  
+  /* För att centrera gallerikontainern på hela sidan */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: black;
+    display: flex;
+    justify-content: center; /* Centrera hela body-innehållet */
+    align-items: center;
+    height: 100vh;
+  }
+.gallery {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item {
+    flex: 0 0 100%;
+    width: 100%;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+.gallery-item.hidden {
+    opacity: 0;
+}
+
+.controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+button {
+    background-color: white;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: white
+}
+
+/* Text under bilderna */
+.text3 {
+   
+ font-size: 14px;
+    color: white;
+    margin-top: 10px;
+}
+.controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 10; /* Se till att knapparna är ovanpå andra element */
+  }
+  
+  button {
+    background-color: rgba(0, 0, 0, 0.5); /* Semitransparent svart bakgrund */
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 11; /* Se till att knappen är ovanpå */
+  }
+  
+  button:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Mörkare bakgrund vid hover */
+  }
+
+  /* Galleri container */
+.gallery-container {
+    position: relative;
+    width: 320px; /* Storlek på iPhone-bilder */
+    height: 600px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1; /* Se till att denna ligger under knapparna */
+  }
+  
+  /* Kontrollknappar */
+  .controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 2; /* Se till att knapparna ligger ovanpå galleri-container */
+  }
+  
+  /* Knapp styling */
+  button {
+    background-color: rgba(0, 0, 0, 0.7); /* Mörk bakgrund för synlighet */
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 3; /* Gör knapparna ännu mer framträdande */
+    border-radius: 50%; /* Gör knapparna rundade */
+    margin: 0 10px; /* Lägger mellanrum mellan knapparna */
+  }
+  
+  /* Hover effekt */
+  button:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  
+  /* Dölja bilder som inte ska synas */
+  .gallery-item.hidden {
+    opacity: 0;
+  }
+  /* Galleri container */
+.gallery-container {
+    position: relative;
+    width: 320px; /* Storlek på iPhone-bilder */
+    height: 600px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Galleri bilder */
+  .gallery {
+    display: flex;
+    transition: transform 0.5s ease; /* Lägg till en smidig övergång */
+  }
+  
+  .gallery-item {
+    flex: 0 0 100%;
+    width: 100%;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+  }
+  
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+  
+  /* Dölja bilder som inte ska synas */
+  .gallery-item.hidden {
+    opacity: 0;
+  }
+  
